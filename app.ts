@@ -1,7 +1,13 @@
+// declare custom types (name of custom type can be anything except for built-in names in JS or TS such as: Date)
+type Combinable = number | string;
+type ConversionDesceriptor = 'as-number' | 'as-text';
+// these are type aliases - very useful
+
+
 // use uninons to add multiple types for input parameters
 function combine(
-    input1: number | string,
-    input2: number | string,
+    input1: Combinable,
+    input2: Combinable,
     conversionType: 'as-number' | 'as-text'
 ) {
     let result;

@@ -1,8 +1,8 @@
 // use uninons to add multiple types for input parameters
 function combine(input1, input2, conversionType) {
     var result;
-    if (typeof input1 == 'number' && typeof input2 == 'number') {
-        result = input1 + input2;
+    if (typeof input1 == 'number' && typeof input2 == 'number' || conversionType === 'as-number') {
+        result = +input1 + +input2;
     }
     else {
         result = input1.toString() + input2.toString();
