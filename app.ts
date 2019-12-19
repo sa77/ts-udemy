@@ -1,34 +1,23 @@
-// declare custom types (name of custom type can be anything except for built-in names in JS or TS such as: Date)
-type Combinable = number | string;
-type ConversionDesceriptor = 'as-number' | 'as-text';
-// these are type aliases - very useful
-
-
-// use uninons to add multiple types for input parameters
-function combine(
-    input1: Combinable,
-    input2: Combinable,
-    conversionType: 'as-number' | 'as-text'
-) {
-    let result;
-    if (typeof input1 == 'number' && typeof input2 == 'number' || conversionType === 'as-number') {
-        result = +input1 + +input2;
-    } else {
-        result = input1.toString() + input2.toString();
-    }
-
-    if (conversionType === 'as-number') {
-        return +result;
-    } else {
-        return result.toString();
-    }
+function add(n1: number, n2: number) {
+    return n1 + n2;
 }
 
-const combinedAges = combine(30, 26, 'as-number');
-console.log(combinedAges)
+// void return type (if the function doesn't return anything - for example the function printResult)
+// TS inference casts it to void if the function return type is not defined
+function printResult(num: number): void {
+    console.log('Result - ', num);
+}
+// this is pretty standard use case
 
-const combinedStringAges = combine('30', '26', 'as-number');
-console.log(combinedStringAges)
+// this is not quite useful - but if you have any use-case that requires this - then go ahead - but understand the difference
+// NOTE - :void is inferred by default return type if you're not returning anything from a function
+function printResult2(num: number): undefined {
+    console.log('Result - ', num);
+    return;
+}
 
-const combinedNames = combine('Max', 'Anna', 'as-text');
-console.log(combinedNames)
+printResult(add(5, 12));
+
+// undefied is a valid type in TS - but you cannot have :undefined as a return type from a function without a return statement
+// if you want `func(): undefined` to work - you'll need to have a return; statement at the end of that function
+let someValue: undefined;
