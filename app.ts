@@ -36,3 +36,15 @@ combinedvalues2 = add;
 // ^^ this is a mismatch
 
 console.log(combinedvalues(8, 8))
+
+
+// the void on the `=> void` tells us that the callback does not expect any return type and if anything is returned, it'll be ignored
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
+    const result = n1 + n2;
+    cb(result);
+}
+
+// callback
+addAndHandle(10, 20, (result) => {
+    console.log('from callback - ', result)
+})
