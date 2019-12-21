@@ -51,3 +51,51 @@ accounting.addEmployee('Sandy');
 // accounting.employees[2] = 'Anna';
 
 accounting.printEmployeeInformation()
+
+
+// 64 - class inheritence
+class ITDepartment extends Department {
+
+    constructor(id: string, public admins: string[]) {
+        // super calls the constructor of the parent class
+        super(id, 'IT-dept');
+        this.admins = admins;
+    }
+}
+
+const it = new ITDepartment('d2', ['Max']);
+console.log(it)
+
+
+class AccountDepartment extends Department {
+
+    constructor(id: string, private reports: string[]) {
+        super(id, 'Account-dept');
+    }
+
+    addReport(text: string) {
+        this.reports.push(text)
+    }
+
+    printReports(this: AccountDepartment) {
+        console.log(this.reports)
+    }
+}
+
+
+const account2 = new AccountDepartment('d3', [])
+account2.addReport('Monthly expenses');
+account2.addReport('Yearly expenses');
+console.log(account2)
+account2.printReports()
+
+
+
+
+
+
+
+
+
+
+
