@@ -45,3 +45,11 @@ if (button) {
     button.addEventListener('click', function (event) { return console.log(event); });
 }
 ;
+// arrow function definitions with default
+// NOTE about default argument - the default argument should be last in the list as below
+// (because default arguments are not skipped when you call a function)
+var addArrowDefault = function (a, b) {
+    if (b === void 0) { b = 1; }
+    return a + b;
+};
+console.log('addArrowDefault -', addArrowDefault(2));

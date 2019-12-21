@@ -63,4 +63,26 @@ if (button) {
 };
 
 
+// arrow function definitions with default
+// NOTE about default argument - the default argument should be last in the list as below
+// (because default arguments are not skipped when you call a function)
+const addArrowDefault = (a: number, b: number = 1) => a + b;
+console.log('addArrowDefault -', addArrowDefault(2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
