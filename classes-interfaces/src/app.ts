@@ -64,13 +64,29 @@ class ITDepartment extends Department {
 }
 
 const it = new ITDepartment('d2', ['Max']);
-console.log(it)
+console.log(it);
 
 
 class AccountDepartment extends Department {
+    private lastReport: string;
+
+    get mostRecentReport() {
+        if (this.lastReport) {
+            return this.lastReport;
+        }
+        throw new Error('No report found.');
+    }
+
+    set mostRecentReport(value: string) {
+        if (!value) {
+            throw new Error('Please pass in a valid value!');
+        }
+        this.addReport(value);
+    }
 
     constructor(id: string, private reports: string[]) {
         super(id, 'Account-dept');
+        this.lastReport = reports[0];
     }
 
     // this method appends to this.employees property (which is private property in Department class)
@@ -83,7 +99,8 @@ class AccountDepartment extends Department {
     }
 
     addReport(text: string) {
-        this.reports.push(text)
+        this.reports.push(text);
+        this.lastReport = text;
     }
 
     printReports(this: AccountDepartment) {
@@ -93,9 +110,13 @@ class AccountDepartment extends Department {
 
 
 const account2 = new AccountDepartment('d3', [])
+
+// account2.mostRecentReport = '';
+
 account2.addReport('Monthly expenses');
 account2.addReport('Yearly expenses');
-console.log(account2)
+console.log(account2);
+console.log(account2.mostRecentReport)
 
 account2.addEmployee('Max');
 account2.addEmployee('Manu');
@@ -103,8 +124,10 @@ account2.addEmployee('Manu');
 account2.printReports();
 account2.printEmployeeInformation();
 
+account2.mostRecentReport = 'Weekly Expense';
 
-
+// you don't access it as a method - just access it as a property (behind the scene - it executes the getter)
+console.log(account2.mostRecentReport)
 
 
 
