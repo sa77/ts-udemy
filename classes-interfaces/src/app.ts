@@ -1,7 +1,7 @@
 class Department {
     // private id:string;
     // name: string;
-    private employees: string[] = [];
+    protected employees: string[] = [];
     // private is called a modifier. there's `public` as well - which is default if nothing is specified
 
     // this is syntactic sugar - can also be defined as function constructor() - es5
@@ -73,6 +73,15 @@ class AccountDepartment extends Department {
         super(id, 'Account-dept');
     }
 
+    // this method appends to this.employees property (which is private property in Department class)
+    // enter `protected` modifier - when set - the property is accessible in inherited classes (`private` properties are not accessible from child)
+    addEmployee(name: string) {
+        if (name == 'Max') {
+            return;
+        }
+        this.employees.push(name);
+    }
+
     addReport(text: string) {
         this.reports.push(text)
     }
@@ -87,7 +96,12 @@ const account2 = new AccountDepartment('d3', [])
 account2.addReport('Monthly expenses');
 account2.addReport('Yearly expenses');
 console.log(account2)
-account2.printReports()
+
+account2.addEmployee('Max');
+account2.addEmployee('Manu');
+
+account2.printReports();
+account2.printEmployeeInformation();
 
 
 

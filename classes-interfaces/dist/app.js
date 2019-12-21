@@ -55,6 +55,12 @@ var AccountDepartment = (function (_super) {
         _this.reports = reports;
         return _this;
     }
+    AccountDepartment.prototype.addEmployee = function (name) {
+        if (name == 'Max') {
+            return;
+        }
+        this.employees.push(name);
+    };
     AccountDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
     };
@@ -67,5 +73,8 @@ var account2 = new AccountDepartment('d3', []);
 account2.addReport('Monthly expenses');
 account2.addReport('Yearly expenses');
 console.log(account2);
+account2.addEmployee('Max');
+account2.addEmployee('Manu');
 account2.printReports();
+account2.printEmployeeInformation();
 //# sourceMappingURL=app.js.map
