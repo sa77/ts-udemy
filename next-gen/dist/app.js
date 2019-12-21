@@ -81,3 +81,31 @@ var person = {
 // to actually create a new object, we can do that using spread operator
 // in this case - it pulls out all the elements (in this case the values are key-value pairs not single values like in an array)
 var copiedPerson = __assign({}, person);
+// 52  - rest Parameters (...<any name of your choice>)
+// `...numbers` will merge all incoming parameters (comma seperated list of values into an array)
+var addRestParams = function () {
+    var numbers = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        numbers[_i] = arguments[_i];
+    }
+    // reduce takes 2 arguments - a function and a starting value of the result
+    // the function in reduce itself takes 2 arguments, current result and current value
+    return numbers.reduce(function (currentResult, currentValue) {
+        return currentResult + currentValue;
+    }, 0);
+};
+// addRestParams therefore takes a list of numbers and returns the sum
+var addNumbers = addRestParams(5, 10, 12, 3.7);
+console.log('addRestParams - ', addNumbers);
+// rest parameters can also be used with tuple
+var addRestParamsTuple = function () {
+    var numbers = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        numbers[_i] = arguments[_i];
+    }
+    return numbers.reduce(function (currentResult, currentValue) {
+        return currentResult + currentValue;
+    }, 0);
+};
+var addNumbersTuple = addRestParamsTuple(5, 10, 2.4);
+console.log('addNumbersTuple --', addNumbersTuple);

@@ -96,10 +96,32 @@ const person = {
 const copiedPerson = { ...person };
 
 
+// 52  - rest Parameters (...<any name of your choice>)
+// `...numbers` will merge all incoming parameters (comma seperated list of values into an array)
+const addRestParams = (...numbers: number[]) => {
+    // reduce takes 2 arguments - a function and a starting value of the result
+    // the function in reduce itself takes 2 arguments, current result and current value
+    return numbers.reduce((currentResult, currentValue) => {
+        return currentResult + currentValue;
+    }, 0);
+};
+
+// addRestParams therefore takes a list of numbers and returns the sum
+
+const addNumbers = addRestParams(5, 10, 12, 3.7)
+console.log('addRestParams - ', addNumbers)
 
 
+// rest parameters can also be used with tuple
 
+const addRestParamsTuple = (...numbers: [number, number, number]) => {
+    return numbers.reduce((currentResult, currentValue) => {
+        return currentResult + currentValue;
+    }, 0);
+}
 
+const addNumbersTuple = addRestParamsTuple(5, 10, 2.4)
+console.log('addNumbersTuple --', addNumbersTuple)
 
 
 
