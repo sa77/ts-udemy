@@ -2,13 +2,19 @@
 var Department = /** @class */ (function () {
     // private is called a modifier. there's `public` as well - which is default if nothing is specified
     // this is syntactic sugar - can also be defined as function constructor() - es5
-    function Department(n) {
+    // get rid of field definitions by using access modifier prefixed fields as params in constructor
+    function Department(id, name) {
+        this.id = id;
+        this.name = name;
+        // private id:string;
+        // name: string;
         this.employees = [];
-        this.name = n;
+        // this.id;
+        // this.name = name;
     }
     // instance method is added like this - name of the method, no colon, no equal sign, with a paranthesis
     Department.prototype.describe = function () {
-        console.log('Department - ' + this.name);
+        console.log("Department - (" + this.id + "), " + this.name);
     };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
@@ -21,7 +27,7 @@ var Department = /** @class */ (function () {
 }());
 // object instantiation
 // constructor is a function which is called with new keyword (has no return statement inside it, but it returns a new object)
-var accounting = new Department('Account');
+var accounting = new Department('d1', 'Account');
 console.log(accounting);
 accounting.describe();
 // this works now because the object on RHS looks like a Department - JSON

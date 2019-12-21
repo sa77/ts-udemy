@@ -1,16 +1,19 @@
 class Department {
-    name: string;
+    // private id:string;
+    // name: string;
     private employees: string[] = [];
     // private is called a modifier. there's `public` as well - which is default if nothing is specified
 
     // this is syntactic sugar - can also be defined as function constructor() - es5
-    constructor(n: string) {
-        this.name = n;
+    // get rid of field definitions by using access modifier prefixed fields as params in constructor
+    constructor(private id: string, public name: string) {
+        // this.id;
+        // this.name = name;
     }
 
     // instance method is added like this - name of the method, no colon, no equal sign, with a paranthesis
     describe(this: Department) {
-        console.log('Department - ' + this.name);
+        console.log(`Department - (${this.id}), ${this.name}`);
     }
 
     addEmployee(employee: string) {
@@ -25,7 +28,7 @@ class Department {
 
 // object instantiation
 // constructor is a function which is called with new keyword (has no return statement inside it, but it returns a new object)
-const accounting = new Department('Account');
+const accounting = new Department('d1', 'Account');
 console.log(accounting)
 
 accounting.describe();
