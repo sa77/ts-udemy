@@ -125,6 +125,44 @@ console.log('addNumbersTuple --', addNumbersTuple)
 
 
 
+// 53 - array and objects destructuring
+const myHobbies = ['Sports', 'Cooking', 'Gardening', 'Hiking'];
+
+// 53.a - array destructuring (destructuring - really means that you pull elements out of the array)
+const [hobby1, hobby2, ...remainingHobbies] = myHobbies;
+// it goes through the array `myHobbies` and stores the first element to hobbty1 and the second element to hobby2
+// and the remainingHobbies will have 2 elements ['Gardening', 'Hiking']
+// NOTE - destructuring does not change the original array
+
+console.log(myHobbies, hobby1, hobby2)
+console.log('remaining - ', remainingHobbies);
+
+
+// 53.b - object destructuring
+const personObject = {
+    firstName: 'Max',
+    theAge: 30
+}
+
+// NOTE - the values/names used on the left side of this syntax are not arbitrary, it has to be same name
+const { firstName, theAge } = personObject;
+
+// However, if you want to overwrite that name, it can be done with aliases like this
+const { firstName: myName, theAge: myAge} = personObject;
+
+console.log('object destructuring - ', myName, myAge)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
