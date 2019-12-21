@@ -1,4 +1,4 @@
-function add(n1: number, n2: number) {
+function add1(n1: number, n2: number) {
     return n1 + n2;
 }
 
@@ -16,7 +16,7 @@ function printResult2(num: number): undefined {
     return;
 }
 
-printResult(add(5, 12));
+printResult(add1(5, 12));
 
 // undefied is a valid type in TS - but you cannot have :undefined as a return type from a function without a return statement
 // if you want `func(): undefined` to work - you'll need to have a return; statement at the end of that function
@@ -31,7 +31,7 @@ let combinedvalues: Function = add;
 let combinedvalues2: (a: number, b: number) => number;
 //  this means combinedValues2 should accept any function that takes 2 parameter where each parameter is a number
 // and the return type of the function is also a number
-combinedvalues2 = add;
+combinedvalues2 = add1;
 // combinedvalues2 = printResult;
 // ^^ this is a mismatch
 
