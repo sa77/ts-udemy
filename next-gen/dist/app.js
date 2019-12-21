@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var userName = 'Max';
 // userName = 'Maximilian';
 var age = 30;
@@ -53,3 +64,20 @@ var addArrowDefault = function (a, b) {
     return a + b;
 };
 console.log('addArrowDefault -', addArrowDefault(2));
+var hobbies = ['Sports', 'Cooking'];
+var activeHobbies = ["Hiking"];
+console.log(hobbies[0]);
+// es6 - spread operator - tells JS to pull out all the elements of the array `hobbies` and add them as
+// a list of values - comma seperated list of values (not as an array but a plain list of values in place of the spread operator used)
+activeHobbies.push.apply(activeHobbies, ["Gardening"].concat(hobbies));
+// spread operator also exists on objects
+var person = {
+    name: 'Max',
+    age: 30
+};
+// const copiedPerson = person;
+// if only assigned like this ^^ this just copies the pointer at the person object in memory into this `copiedPerson` constant
+// so this this does not really create copy of that object.
+// to actually create a new object, we can do that using spread operator
+// in this case - it pulls out all the elements (in this case the values are key-value pairs not single values like in an array)
+var copiedPerson = __assign({}, person);

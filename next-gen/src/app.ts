@@ -71,6 +71,41 @@ console.log('addArrowDefault -', addArrowDefault(2))
 
 
 
+const hobbies = ['Sports', 'Cooking'];
+const activeHobbies = ["Hiking"];
+
+console.log(hobbies[0])
+
+// es6 - spread operator - tells JS to pull out all the elements of the array `hobbies` and add them as
+// a list of values - comma seperated list of values (not as an array but a plain list of values in place of the spread operator used)
+activeHobbies.push("Gardening", ...hobbies);
+
+
+// spread operator also exists on objects
+const person = {
+    name: 'Max',
+    age: 30
+}
+
+// const copiedPerson = person;
+// if only assigned like this ^^ this just copies the pointer at the person object in memory into this `copiedPerson` constant
+// so this this does not really create copy of that object.
+
+// to actually create a new object, we can do that using spread operator
+// in this case - it pulls out all the elements (in this case the values are key-value pairs not single values like in an array)
+const copiedPerson = { ...person };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
