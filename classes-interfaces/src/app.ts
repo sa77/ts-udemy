@@ -6,7 +6,8 @@ class Department {
 
     // this is syntactic sugar - can also be defined as function constructor() - es5
     // get rid of field definitions by using access modifier prefixed fields as params in constructor
-    constructor(private id: string, public name: string) {
+    // `readonly` property - cannot be changed once initialized
+    constructor(private readonly id: string, public name: string) {
         // this.id;
         // this.name = name;
     }
