@@ -1,11 +1,14 @@
 "use strict";
-var user1;
-user1 = {
-    name: 'Max',
-    age: 30,
-    greet: function (phrase) {
-        console.log(phrase + ' ', this.name);
+var Person = (function () {
+    function Person(n) {
+        this.age = 30;
+        this.name = n;
     }
-};
-user1.greet('Hi there  - I am');
+    Person.prototype.greet = function (phrase) {
+        console.log(phrase + ' ' + this.name);
+    };
+    return Person;
+}());
+var user2 = new Person('Max');
+user2.greet('Hello ');
 //# sourceMappingURL=app.js.map
