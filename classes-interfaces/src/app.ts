@@ -44,3 +44,29 @@ let user2 = new Person('Max')
 user2.greet('Hello ')
 
 console.log(user2);
+
+// NOTE - interfaces can have multiple inheritence (Classes do not)
+
+
+// 75 -- alternative syntax for type definition for functions
+// type definition of a function --> this can also be done with an interface
+type AddFn = (a: number, b: number) => number;
+
+let add: AddFn;
+
+add = (n1: number, n2: number) => {
+    return n1 + n2;
+};
+
+// an anonymous function like this can be defined - interface understands this is for a function
+interface AddFunc {
+    (a: number, b: number): number;
+}
+
+let addFunc: AddFunc;
+
+addFunc = (n1: number, n2: number) => {
+    return n1 + n2;
+};
+
+
