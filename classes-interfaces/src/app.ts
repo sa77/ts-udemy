@@ -155,6 +155,36 @@ console.log(account2.mostRecentReport)
 
 
 
+// 69 --- singletons
+// singleton pattern - a pattern in OOP ==> pattern that ensures that you have only one instance of a certain class
+// => private constructor - this ensures that you can't call `new` to initiatiate multiple times
+
+class MarketingDepartment extends Department {
+    private lastReport: string;
+    private static instance: MarketingDepartment;
+
+    private constructor(id: string, private reports: string[]) {
+        super(id, 'Marketing-dept');
+        this.lastReport = reports[0];
+    }
+
+    static getInstance() {
+        // `this` keyword inside static method refers to the class itself - MarketingDepartment
+        // so `this.instance === MarketingDepartment.instance` inside a static method
+        if (MarketingDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new MarketingDepartment('d3', []);
+        return this.instance;
+    }
+
+    describe(this: MarketingDepartment) {
+        console.log('Accounting department - ID: ', this.id)
+    }
+}
+
+const marketing = MarketingDepartment.getInstance();
+console.log(marketing);
 
 
 

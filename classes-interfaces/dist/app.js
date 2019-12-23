@@ -102,4 +102,26 @@ account2.printReports();
 account2.printEmployeeInformation();
 account2.mostRecentReport = 'Weekly Expense';
 console.log(account2.mostRecentReport);
+var MarketingDepartment = (function (_super) {
+    __extends(MarketingDepartment, _super);
+    function MarketingDepartment(id, reports) {
+        var _this = _super.call(this, id, 'Marketing-dept') || this;
+        _this.reports = reports;
+        _this.lastReport = reports[0];
+        return _this;
+    }
+    MarketingDepartment.getInstance = function () {
+        if (MarketingDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new MarketingDepartment('d3', []);
+        return this.instance;
+    };
+    MarketingDepartment.prototype.describe = function () {
+        console.log('Accounting department - ID: ', this.id);
+    };
+    return MarketingDepartment;
+}(Department));
+var marketing = MarketingDepartment.getInstance();
+console.log(marketing);
 //# sourceMappingURL=app.js.map
