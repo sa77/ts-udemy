@@ -11,4 +11,5 @@ var Person = (function () {
 }());
 var user2 = new Person('Max');
 user2.greet('Hello ');
+console.log(user2);
 //# sourceMappingURL=app.js.map

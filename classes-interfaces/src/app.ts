@@ -1,17 +1,20 @@
+interface Named {
+    readonly name: string;
+}
+
 // 70 - interfaces - describes how an object should look like - structure of an object
 // just the structure - not the concreate values
-interface Greetable {
-    name: string;
-    age: number;
+interface Greetable extends Named {
+    // readonly name: string;
 
     greet(phrase: string): void;
-
 }
 
 // interfaces are used to share functionalities amongst different classes,
 // not regarding their concrete implementations but regarding the structure
+// interfaces enforces a class structure
 class Person implements Greetable {
-    name: string;
+    readonly name: string;
     age: number = 30;
 
     constructor(n: string) {
@@ -37,4 +40,7 @@ class Person implements Greetable {
 
 
 let user2 = new Person('Max')
+// user2.name = 'Sandeep'
 user2.greet('Hello ')
+
+console.log(user2);
