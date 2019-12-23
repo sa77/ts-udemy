@@ -1,4 +1,5 @@
-class Department {
+// `abstract` classes cannot be instantiated themselves
+abstract class Department {
     // private id:string;
     // name: string;
     protected employees: string[] = [];
@@ -7,7 +8,7 @@ class Department {
     // this is syntactic sugar - can also be defined as function constructor() - es5
     // get rid of field definitions by using access modifier prefixed fields as params in constructor
     // `readonly` property - cannot be changed once initialized
-    constructor(private readonly id: string, public name: string) {
+    constructor(protected readonly id: string, public name: string) {
         // this.id;
         // this.name = name;
     }
@@ -24,10 +25,7 @@ class Department {
     }
 
     // instance method is added like this - name of the method, no colon, no equal sign, with a paranthesis
-    describe(this: Department) {
-        console.log('Static property -', Department.fiscalYear)
-        console.log(`Department - (${this.id}), ${this.name}`);
-    }
+    abstract describe(this: Department): void;
 
     addEmployee(employee: string) {
         this.employees.push(employee);
@@ -41,10 +39,10 @@ class Department {
 
 // object instantiation
 // constructor is a function which is called with new keyword (has no return statement inside it, but it returns a new object)
-const accounting = new Department('d1', 'Account');
-console.log(accounting)
+// const accounting = new Department('d1', 'Account');
+// console.log(accounting)
 
-accounting.describe();
+// accounting.describe();
 
 // this works now because the object on RHS looks like a Department - JSON
 // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
@@ -57,12 +55,12 @@ accounting.describe();
 
 
 
-accounting.addEmployee('Max');
-accounting.addEmployee('Sandy');
+// accounting.addEmployee('Max');
+// accounting.addEmployee('Sandy');
 // careful with this - make an uniform method to do it ==> private (both propery as well as method can be private)
 // accounting.employees[2] = 'Anna';
 
-accounting.printEmployeeInformation()
+// accounting.printEmployeeInformation()
 
 
 const employee = Department.createEmployee('Max');
@@ -76,6 +74,10 @@ class ITDepartment extends Department {
         // super calls the constructor of the parent class
         super(id, 'IT-dept');
         this.admins = admins;
+    }
+
+    describe(this: ITDepartment) {
+        console.log('IT department - ID: ', this.id)
     }
 }
 
@@ -91,6 +93,10 @@ class AccountDepartment extends Department {
             return this.lastReport;
         }
         throw new Error('No report found.');
+    }
+
+    describe(this: AccountDepartment) {
+        console.log('Accounting department - ID: ', this.id)
     }
 
     set mostRecentReport(value: string) {
@@ -133,6 +139,8 @@ account2.addReport('Monthly expenses');
 account2.addReport('Yearly expenses');
 console.log(account2);
 console.log(account2.mostRecentReport)
+
+account2.describe()
 
 account2.addEmployee('Max');
 account2.addEmployee('Manu');

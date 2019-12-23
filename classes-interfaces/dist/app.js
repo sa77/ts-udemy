@@ -21,10 +21,6 @@ var Department = (function () {
     Department.createEmployee = function (name) {
         return { name: name };
     };
-    Department.prototype.describe = function () {
-        console.log('Static property -', Department.fiscalYear);
-        console.log("Department - (" + this.id + "), " + this.name);
-    };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
     };
@@ -35,12 +31,6 @@ var Department = (function () {
     Department.fiscalYear = 2020;
     return Department;
 }());
-var accounting = new Department('d1', 'Account');
-console.log(accounting);
-accounting.describe();
-accounting.addEmployee('Max');
-accounting.addEmployee('Sandy');
-accounting.printEmployeeInformation();
 var employee = Department.createEmployee('Max');
 console.log('static --', employee);
 var ITDepartment = (function (_super) {
@@ -51,6 +41,9 @@ var ITDepartment = (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log('IT department - ID: ', this.id);
+    };
     return ITDepartment;
 }(Department));
 var it = new ITDepartment('d2', ['Max']);
@@ -79,6 +72,9 @@ var AccountDepartment = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    AccountDepartment.prototype.describe = function () {
+        console.log('Accounting department - ID: ', this.id);
+    };
     AccountDepartment.prototype.addEmployee = function (name) {
         if (name == 'Max') {
             return;
@@ -99,6 +95,7 @@ account2.addReport('Monthly expenses');
 account2.addReport('Yearly expenses');
 console.log(account2);
 console.log(account2.mostRecentReport);
+account2.describe();
 account2.addEmployee('Max');
 account2.addEmployee('Manu');
 account2.printReports();
