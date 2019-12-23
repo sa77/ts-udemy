@@ -1,5 +1,7 @@
 interface Named {
-    readonly name: string;
+    // optional properties and methods in interfaces - just add a ?
+    readonly name?: string;
+    outputName?: string;
 }
 
 // 70 - interfaces - describes how an object should look like - structure of an object
@@ -14,17 +16,25 @@ interface Greetable extends Named {
 // not regarding their concrete implementations but regarding the structure
 // interfaces enforces a class structure
 class Person implements Greetable {
-    readonly name: string;
+    readonly name?: string;
     age: number = 30;
 
-    constructor(n: string) {
-        this.name = n
+    constructor(n?: string) {
+        if (n) {
+            this.name = n;
+        }
     }
 
     greet(phrase: string) {
-        console.log(phrase + ' ' + this.name);
+        if (this.name) {
+            console.log(phrase + ' ' + this.name);
+        } else {
+            console.log('Hi!');
+        }
     }
 }
+// the optional parameters are loosely related - you can have an optional property in the interface
+// and the implementing class can have that as non-optional
 
 // let user1: Person;
 
@@ -44,6 +54,10 @@ let user2 = new Person('Max')
 user2.greet('Hello ')
 
 console.log(user2);
+
+let user3  = new Person();
+console.log(user3);
+user3.greet('hello')
 
 // NOTE - interfaces can have multiple inheritence (Classes do not)
 
@@ -68,5 +82,19 @@ let addFunc: AddFunc;
 addFunc = (n1: number, n2: number) => {
     return n1 + n2;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
