@@ -12,8 +12,20 @@ class Department {
         // this.name = name;
     }
 
+    // -- static property
+    static fiscalYear = 2020;
+
+    // -- static method
+    // static members are detached from the instance and are part of the class instead
+    // access it outside the class - Department.createEmployee()
+    // these methods cannot be accessed from non-static parts inside the class using `this` keyword
+    static createEmployee(name: string) {
+        return {name: name};
+    }
+
     // instance method is added like this - name of the method, no colon, no equal sign, with a paranthesis
     describe(this: Department) {
+        console.log('Static property -', Department.fiscalYear)
         console.log(`Department - (${this.id}), ${this.name}`);
     }
 
@@ -51,6 +63,10 @@ accounting.addEmployee('Sandy');
 // accounting.employees[2] = 'Anna';
 
 accounting.printEmployeeInformation()
+
+
+const employee = Department.createEmployee('Max');
+console.log('static --', employee)
 
 
 // 64 - class inheritence

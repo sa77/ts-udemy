@@ -18,7 +18,11 @@ var Department = (function () {
         this.name = name;
         this.employees = [];
     }
+    Department.createEmployee = function (name) {
+        return { name: name };
+    };
     Department.prototype.describe = function () {
+        console.log('Static property -', Department.fiscalYear);
         console.log("Department - (" + this.id + "), " + this.name);
     };
     Department.prototype.addEmployee = function (employee) {
@@ -28,6 +32,7 @@ var Department = (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
+    Department.fiscalYear = 2020;
     return Department;
 }());
 var accounting = new Department('d1', 'Account');
@@ -36,6 +41,8 @@ accounting.describe();
 accounting.addEmployee('Max');
 accounting.addEmployee('Sandy');
 accounting.printEmployeeInformation();
+var employee = Department.createEmployee('Max');
+console.log('static --', employee);
 var ITDepartment = (function (_super) {
     __extends(ITDepartment, _super);
     function ITDepartment(id, admins) {
