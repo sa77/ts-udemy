@@ -92,3 +92,6 @@ var userInputElement = document.getElementById('user-input');
 var userInputElementAlternative = document.getElementById('user-input');
 // null checking `('user-input')!` is automaticall implied when you typecast
 userInputElement.value = 'Hi there!';
+var errorBag = {
+    email: 'Not a valid email'
+};

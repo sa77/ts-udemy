@@ -179,6 +179,26 @@ userInputElement.value = 'Hi there!'
 
 
 
+// === 86 - index properties
+// index types - a feature that allows us to create objects which are more flexible regarding the properties that they might hold
+// possible use case - on a form - show validation errors based on user input
+
+// the property names need to flexible enough to use it on any form that is on the webpage
+// also just return object with properties that has a value - omit null valued properties
+// TL:DR - pretty sure about the value but not sure about how many properties i'll have and which name the property will have
+interface ErrorContainer { // {email: 'Not a valid email', username: 'Must start with a character'}
+    // id: string;
+    // other properties can be added (Ex - id)
+    // NOTE - we can't have a `number` type on a fixed property type - restriction if you're using index type
+    [prop: string]: string;
+    //    ^^ value type of the property name (strings, numbers or symbols - boolean is not allowed)
+}
+
+
+const errorBag: ErrorContainer = {
+    email: 'Not a valid email'
+}
+
 
 
 
