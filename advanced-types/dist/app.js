@@ -77,3 +77,18 @@ moveAnimal({ type: 'horse', runningSpeed: 33 });
 // this is a discriminated union because there exists one common property [type] in objects that makes up our union
 // that describes that object - which can be used for typesafety in our code
 // (very useful pattern while working with objects and union types)
+// === 85 - type casting
+// helps TS to tell some value is of a type where TS is not able to detect on its own
+// a good example will be if we get access to something in DOM
+// this works inferes to => `HtmlParagrahElemment | null`
+var paragraph = document.querySelector('p');
+// but TS does not goes through HTML - therefore cannot infer it just infers as a => `HtmlElemment | null`
+var paragraph2 = document.getElementById('message-output');
+// type-casting comes to rescue => 2 different syntaxes
+// syntax1
+var userInputElement = document.getElementById('user-input');
+// syntax2 - do not clash with react syntax of angle bracket as above ^^
+// both are equivalent - just be consistent throughout (use this below if you're TSing with react)
+var userInputElementAlternative = document.getElementById('user-input');
+// null checking `('user-input')!` is automaticall implied when you typecast
+userInputElement.value = 'Hi there!';
