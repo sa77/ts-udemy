@@ -129,3 +129,12 @@ var fetchedUserDataFromServer = {
 // console.log(fetchedUserDataFromServer.job && fetchedUserDataFromServer.job.title)
 // -- TS >= 3.7
 console.log(fetchedUserDataFromServer ? .job ? .title :  : );
+// === 89 - nullish data
+// suppose this comes from API or DOM
+var userInput = '';
+var storedData = userInput || 'DEFAULT';
+// ^^ this works for `null` and `undefined` and even '' and 0 is treated as a falsy value - resolves to 'DEFAULT'
+console.log('|| ---', storedData);
+// null coalescing operator - just for `null` or `undefined` (not empty string '' or 0)
+var storedDataFork = userInput ?  ? 'DEFAULT' :  : ;
+console.log('?? ---', storedDataFork);
