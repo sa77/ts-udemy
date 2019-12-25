@@ -212,7 +212,7 @@ function addFunc(a: string, b: string): string;
 function addFunc(a: number, b: number): number;
 function addFunc(a: string, b: number): string;
 function addFunc(a: number, b: string): string;
-function addFunc(a: Combinable, b?: Combinable) {
+function addFunc(a: Combinable, b: Combinable) {
     if (typeof a === 'string' || typeof b === 'string') {
         return a.toString() + b.toString();
     }
@@ -231,6 +231,34 @@ addFunc('Max', 'Wayne'); // returns string
 addFunc(1, 2); // returns number
 
 
+
+// === 88 - optional chaining
+const fetchedUserData = {
+    id: 'u1',
+    name: 'Max',
+    job: {
+        title: 'CEO',
+        description: 'My own company'
+    }
+}
+
+console.log(fetchedUserData.job.title);
+
+// if this comes from the backend - some data might be missing on nested property
+
+const fetchedUserDataFromServer = {
+    id: 'u1',
+    name: 'Max',
+    // job: {
+    //     title: 'CEO',
+    //     description: 'My own company'
+    // }
+}
+
+// -- regular JS
+// console.log(fetchedUserDataFromServer.job && fetchedUserDataFromServer.job.title)
+// -- TS >= 3.7
+console.log(fetchedUserDataFromServer?.job?.title);
 
 
 

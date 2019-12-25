@@ -110,3 +110,22 @@ addFunc(1, 'Wayne'); // returns string
 addFunc('Max', 1); // returns string
 addFunc('Max', 'Wayne'); // returns string
 addFunc(1, 2); // returns number
+// === 88 - optional chaining
+var fetchedUserData = {
+    id: 'u1',
+    name: 'Max',
+    job: {
+        title: 'CEO',
+        description: 'My own company'
+    }
+};
+console.log(fetchedUserData.job.title);
+// if this comes from the backend - some data might be missing on nested property
+var fetchedUserDataFromServer = {
+    id: 'u1',
+    name: 'Max',
+};
+// -- regular JS
+// console.log(fetchedUserDataFromServer.job && fetchedUserDataFromServer.job.title)
+// -- TS >= 3.7
+console.log(fetchedUserDataFromServer ? .job ? .title :  : );
