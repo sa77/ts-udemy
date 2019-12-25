@@ -115,6 +115,62 @@ function useVehicle(vehicle: Vehicle) {
 }
 
 
+// === 84 - discriminated union (helps with type-guard)
+// it's a pattern that you can use it while working with union types that makes implementing type-guard easier
+// it is available when you're working with object types - works with both interafaces and classes
+
+interface Bird {
+    type: 'bird'; // this is an interface - so this is not actually a value but rather a literal type
+    flyingSpeed: number;
+}
+
+interface Horse {
+    type: 'horse';
+    runningSpeed: number;
+}
+
+
+type Animal = Bird | Horse;
+
+// `instanceof` does not work with interfaces - interfaces do not have constructor function
+// resolve this using a property - such as a literal in interfaces or a property value in case of a class
+function moveAnimal(animal: Animal ) {
+    let speed;
+    switch(animal.type) {
+        case 'bird':
+            speed = animal.flyingSpeed;
+            break;
+        case 'horse':
+            speed = animal.runningSpeed;
+            break;
+    }
+    console.log('Moving with speed: ' + speed)
+}
+
+
+moveAnimal({type: 'bird', flyingSpeed: 10})
+moveAnimal({type: 'horse', runningSpeed: 33})
+
+
+// this is a discriminated union because there exists one common property [type] in objects that makes up our union
+// that describes that object - which can be used for typesafety in our code
+// (very useful pattern while working with objects and union types)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -58,3 +58,22 @@ function useVehicle(vehicle) {
         vehicle.loadCargo(1000);
     }
 }
+// `instanceof` does not work with interfaces - interfaces do not have constructor function
+// resolve this using a property - such as a literal in interfaces or a property value in case of a class
+function moveAnimal(animal) {
+    var speed;
+    switch (animal.type) {
+        case 'bird':
+            speed = animal.flyingSpeed;
+            break;
+        case 'horse':
+            speed = animal.runningSpeed;
+            break;
+    }
+    console.log('Moving with speed: ' + speed);
+}
+moveAnimal({ type: 'bird', flyingSpeed: 10 });
+moveAnimal({ type: 'horse', runningSpeed: 33 });
+// this is a discriminated union because there exists one common property [type] in objects that makes up our union
+// that describes that object - which can be used for typesafety in our code
+// (very useful pattern while working with objects and union types)
