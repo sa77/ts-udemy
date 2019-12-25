@@ -93,5 +93,20 @@ var userInputElementAlternative = document.getElementById('user-input');
 // null checking `('user-input')!` is automaticall implied when you typecast
 userInputElement.value = 'Hi there!';
 var errorBag = {
-    email: 'Not a valid email'
+    email: 'Not a valid email',
+    username: 'Must start with a capital character!'
 };
+function addFunc(a, b) {
+    if (typeof a === 'string' || typeof b === 'string') {
+        return a.toString() + b.toString();
+    }
+    return a + b;
+}
+// const result = addFunc(1, 5);
+var result = addFunc('Max', 'Wayne');
+// the return type is Combinable ^^ => so the `.split()` function does not work
+// result.split('') => can be made to work with function overloads
+addFunc(1, 'Wayne'); // returns string
+addFunc('Max', 1); // returns string
+addFunc('Max', 'Wayne'); // returns string
+addFunc(1, 2); // returns number

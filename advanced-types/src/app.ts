@@ -196,12 +196,39 @@ interface ErrorContainer { // {email: 'Not a valid email', username: 'Must start
 
 
 const errorBag: ErrorContainer = {
-    email: 'Not a valid email'
+    email: 'Not a valid email',
+    username: 'Must start with a capital character!'
 }
 
 
 
 
+// === 87 - function overloads
+// feature that allows multiple function signature for the same function
+// also variate number of params passed to a function
+// function addFunc(n: number): number
+
+function addFunc(a: string, b: string): string;
+function addFunc(a: number, b: number): number;
+function addFunc(a: string, b: number): string;
+function addFunc(a: number, b: string): string;
+function addFunc(a: Combinable, b?: Combinable) {
+    if (typeof a === 'string' || typeof b === 'string') {
+        return a.toString() + b.toString();
+    }
+    return a + b;
+}
+
+// const result = addFunc(1, 5);
+const result = addFunc('Max', 'Wayne');
+// the return type is Combinable ^^ => so the `.split()` function does not work
+// result.split('') => can be made to work with function overloads
+
+addFunc(1, 'Wayne'); // returns string
+addFunc('Max', 1); // returns string
+addFunc('Max', 'Wayne'); // returns string
+
+addFunc(1, 2); // returns number
 
 
 
