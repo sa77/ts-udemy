@@ -9,12 +9,14 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'development', // makes debugging easier - meaningful user
   entry: './src/app.ts',
   output: { // single JS file that will be spitted out by Webpack
     // you can do - bundle.[contenthash].js to help caching (look for webpack docs for more info)
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist') // this needs to be absolute path: `path.resolve()` allows to build absolute path to a certain folder
+    path: path.resolve(__dirname, 'dist'), // this needs to be absolute path: `path.resolve()` allows to build absolute path to a certain folder
     // __dirname constant is available globally in a NodeJS environment
+    publicPath: 'dist' // additional config for webpack-dev-server to pick on new bundle on dev browser
   },
   devtool: 'inline-source-map', // supports source.js.pap files for local debugging (sourceMap: true - in .tsconfig.json)
   module: { // add extra functionalities in webpack
