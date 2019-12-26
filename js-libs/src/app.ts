@@ -45,3 +45,21 @@ console.log('TS - class-transformer');
 for (const prod of loadedProductsTransformed) {
     console.log(prod.getInformation())
 }
+
+
+// https://github.com/typestack/class-validator
+//  - allows to add validations rules with the help of some decorators inside of a class
+import { validate } from 'class-validator';
+const newProd = new Product('', -5.99)
+
+validate(newProd).then(errors => {
+    if (errors.length > 0) {
+        console.log('Validation Error -', errors)
+    } else {
+        console.log(newProd.getInformation())
+    }
+});
+
+
+
+
