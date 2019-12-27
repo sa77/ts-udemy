@@ -8,3 +8,25 @@ exports.createTodo = (req, res, next) => {
     TODOS.push(newTodo);
     res.status(201).json({ message: 'Created todo.', createdTodo: newTodo });
 };
+exports.getTodos = (req, res, next) => {
+    res.json({ todos: TODOS });
+};
+exports.updateTodo = (req, res, next) => {
+    const todoId = req.params.id;
+    const updatedText = req.body.text;
+    const todoIndex = TODOS.findIndex(todo => todo.id === todoId);
+    if (todoIndex < 0) {
+        throw new Error('Could not find todo!');
+    }
+    TODOS[todoIndex] = new todo_1.Todo(TODOS[todoIndex].id, updatedText);
+    res.json({ message: 'Updated!', updatedTodo: TODOS[todoIndex] });
+};
+exports.deleteTodo = (req, res, next) => {
+    const todoId = req.params.id;
+    const todoIndex = TODOS.findIndex(todo => todo.id === todoId);
+    if (todoIndex < 0) {
+        throw new Error('Could not find todo!');
+    }
+    TODOS.splice(todoIndex, 1);
+    res.json({ message: 'Deleted!' });
+};
